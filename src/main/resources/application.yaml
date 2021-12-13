@@ -1,0 +1,11 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.NonRegisteringDriver
+    username: root
+    password: Ab00859567c!
+    url: jdbc:mysql://1.15.71.35:13306/wxmp_data?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=true
+
+mybatis:
+  type-aliases-package: com.gaogg.wxmp.domain
+
