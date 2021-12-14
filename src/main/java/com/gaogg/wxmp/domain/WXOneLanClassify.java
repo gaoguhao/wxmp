@@ -2,6 +2,8 @@ package com.gaogg.wxmp.domain;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class WXOneLanClassify {
     private int id;
@@ -11,5 +13,4 @@ public class WXOneLanClassify {
     private int cat_level;
     private Boolean cat_deleted;
     private String cat_icon;
-
 }

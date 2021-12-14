@@ -6,6 +6,7 @@ import com.gaogg.wxmp.result.ReIndexClassify;
 import com.gaogg.wxmp.result.ReIndexGoods;
 import com.gaogg.wxmp.result.ReIndexSwiper;
 import com.gaogg.wxmp.result.ReStuts;
+import com.gaogg.wxmp.util.ReStutsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,8 @@ public class GetIndexData {
     @Autowired
     GetIndexDao getIndexDao;
 
+    @Autowired
+    ReStutsUtil reStutsUtil;
     /**
      * 滚动图片
      * @return
@@ -28,8 +31,8 @@ public class GetIndexData {
         ReIndexSwiper reIndexSwiper = new ReIndexSwiper();
         List<WXIndexSwiper> indexSwipers = getIndexDao.getIndexSwipers();
         reIndexSwiper.setLists(indexSwipers);
-        ReStuts reStuts=getReStuts(indexSwipers.size());
-        reIndexSwiper.setResStuts(reStuts);
+        ReStuts reStuts=reStutsUtil.getReStuts(indexSwipers.size());
+        reIndexSwiper.setReStuts(reStuts);
         return reIndexSwiper;
     }
 
@@ -42,7 +45,7 @@ public class GetIndexData {
         ReIndexClassify reIndexClassify = new ReIndexClassify();
         List<WXIndexClassifys> indexClassifys = getIndexDao.getIndexClassifys();
         reIndexClassify.setWxIndexClassifys(indexClassifys);
-        ReStuts reStuts=getReStuts(indexClassifys.size());
+        ReStuts reStuts=reStutsUtil.getReStuts(indexClassifys.size());
         reIndexClassify.setReStuts(reStuts);
         return reIndexClassify;
     }
@@ -65,25 +68,10 @@ public class GetIndexData {
         }
         ReIndexGoods reIndexGoods = new ReIndexGoods();
         reIndexGoods.setWxIndexGoods(wxIndexGoods);
-        ReStuts reStuts=getReStuts(wxIndexGoods.size());
+        ReStuts reStuts=reStutsUtil.getReStuts(wxIndexGoods.size());
         reIndexGoods.setReStuts(reStuts);
         return reIndexGoods;
     }
 
-    /**
-     * 状态回值封装
-     * @param listLength
-     * @return
-     */
-    private ReStuts getReStuts(int listLength) {
-        ReStuts reStuts = new ReStuts();
-        if(listLength>0){
-            reStuts.setRecode(1);
-            reStuts.setMsg("获取成功");
-        }else{
-            reStuts.setRecode(0);
-            reStuts.setMsg("获取失败");
-        }
-        return reStuts;
-    }
+
 }

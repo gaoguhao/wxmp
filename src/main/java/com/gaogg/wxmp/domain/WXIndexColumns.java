@@ -9,5 +9,6 @@ public class WXIndexColumns {
     private String columnName;
     private int columnNum;
     private String image_src;
+    private int modeId;
 //    private List<WXIndexColumnDatas> indexColumnDatas;
 }

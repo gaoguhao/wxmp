@@ -1,5 +1,6 @@
 package com.gaogg.wxmp;
 
+import com.gaogg.wxmp.contorller.GetClassifyData;
 import com.gaogg.wxmp.dao.GetClassifyDao;
 import com.gaogg.wxmp.dao.GetIndexDao;
 import com.gaogg.wxmp.domain.*;
@@ -14,17 +15,12 @@ import java.util.List;
 class WxmpApplicationTests {
     @Autowired
     GetClassifyDao getClassifyDao;
+    @Autowired
+    GetClassifyData getClassifyData;
 
     @Test
     void contextLoads() {
-        final List<WXOneLanClassify> oneLanClassifys = getClassifyDao.getOneLanClassify();
-        for (WXOneLanClassify oneLanClassify : oneLanClassifys) {
-            //System.out.println(oneLanClassify);
-            final List<WXTwoLanClassify> allLanClassifys = getClassifyDao.getAllLanClassifys(oneLanClassify.getCat_id());
-            for (WXTwoLanClassify allLanClassify : allLanClassifys) {
-                System.out.println(allLanClassify);
-            }
-        }
+        getClassifyData.getClassifyNoId();
     }
 
 }

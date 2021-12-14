@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class ReIndexSwiper {
-    private ReStuts resStuts;
+    private ReStuts reStuts;
     private List<WXIndexSwiper> lists;
 }

@@ -41,7 +41,7 @@ public interface GetIndexDao {
      * 获取所有栏目及数据
      * @return
      */
-    @Select("select columnName,columnNum,image_src from indexColumn ")
+    @Select("select columnName,columnNum,image_src,modeId from indexColumn ")
     @Results({
             @Result(property = "indexColumnDatas", column="columnNum",
                 many = @Many(select = "com.gaogg.wxmp.dao.GetIndexDao.getDatasWithcolumnNum"))
