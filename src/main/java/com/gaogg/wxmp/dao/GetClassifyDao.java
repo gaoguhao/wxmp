@@ -15,7 +15,7 @@ public interface GetClassifyDao {
     @Select("select * from threeLanClassify where middle_cat_id=#{cat_id}")
     List<WXThreeLanClassify> getThreeLanClassify(int cat_id);
 
-    @Select("select big_cat_id,cat_id,cat_name,cat_pid,cat_level,cat_deleted,cat_icon from twoLanClassify where big_cat_id=#{big_cat_id}")
+    @Select("select id, big_cat_id,cat_id,cat_name,cat_pid,cat_level,cat_deleted,cat_icon from twoLanClassify where big_cat_id=#{big_cat_id}")
     @Results({
             /*
             * - property = “children”, 表示要将返回的查询结果赋值给WXTwoLanClassify的children属性
