@@ -4,6 +4,8 @@ import com.gaogg.wxmp.contorller.GetClassifyData;
 import com.gaogg.wxmp.dao.GetClassifyDao;
 import com.gaogg.wxmp.dao.GetIndexDao;
 import com.gaogg.wxmp.domain.*;
+import com.gaogg.wxmp.service.GetGoodsLists;
+import com.gaogg.wxmp.util.PageHelperUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,9 +20,17 @@ class WxmpApplicationTests {
     @Autowired
     GetClassifyData getClassifyData;
 
+    @Autowired
+    GetGoodsLists getGoodsLists;
+
     @Test
     void contextLoads() {
         getClassifyData.getClassifyNoId();
     }
 
+    @Test
+    public void testgoods(){
+        final PageHelperUtil<GoodsList> goodsByPages = getGoodsLists.getGoodsByPage("游戏", 0, 1, 10);
+        System.out.println(goodsByPages);
+    }
 }
