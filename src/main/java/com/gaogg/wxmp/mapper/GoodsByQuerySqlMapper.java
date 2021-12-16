@@ -1,5 +1,5 @@
 package com.gaogg.wxmp.mapper;
-
+//商品获取动态判断sql生成文件
 public class GoodsByQuerySqlMapper {
     public String selectByQuery(String query,int catId){
         StringBuffer sql = new StringBuffer("select goods_id,cat_id,goods_name,goods_price,goods_number,goods_weight,goods_big_logo,add_time,upd_time,hot_mumber,is_promote,cat_one_id,cat_two_id,cat_three_id from goodsList");
