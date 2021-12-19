@@ -12,6 +12,8 @@ import java.util.List;
 public interface QueryGoodsLists {
     @Select("select goods_id,cat_id,goods_name,goods_price,goods_number,goods_weight,goods_big_logo,add_time,upd_time,hot_mumber,is_promote,cat_one_id,cat_two_id,cat_three_id from goodsList")
     List<GoodsList> queryAll();
+    @Select("select goods_id from goodsList")
+    List<Long> queryGoodsId();
     //通过mapper.class方式来生成sql文件typ表示类方法，method标识调用的哪个执行方法
     @SelectProvider(type= GoodsByQuerySqlMapper.class,method = "selectByQuery")
     List<GoodsList> queryGoodsByCatId(String query,int catId,int orders);

@@ -5,4 +5,3 @@ spring:
 
 mybatis:
   type-aliases-package: com.gaogg.wxmp.domain
-
