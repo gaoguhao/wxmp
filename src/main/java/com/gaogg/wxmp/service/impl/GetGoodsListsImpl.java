@@ -17,11 +17,11 @@ public class GetGoodsListsImpl implements GetGoodsLists {
     private QueryGoodsLists queryGoodsLists;
 
     @Override
-    public PageHelperUtil<GoodsList> getGoodsByPage(String query, int catId, Integer pagenum, Integer pagesize) {
-//        设置起始以及每页显示数
+    public PageHelperUtil<GoodsList> getGoodsByPage(String query, int catId,int orders, Integer pagenum, Integer pagesize) {
+        //        设置起始以及每页显示数
         PageHelper.startPage(pagenum,pagesize);
         //查询数据
-        List<GoodsList> goodsLists= queryGoodsLists.queryGoodsByCatId(query,catId);
+        List<GoodsList> goodsLists= queryGoodsLists.queryGoodsByCatId(query,catId,orders);
         //将查询结果交给pageInfo处理
         PageInfo<GoodsList> pageInfo=new PageInfo<>(goodsLists);
         //创建封装结果集对象

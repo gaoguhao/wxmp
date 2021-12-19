@@ -22,9 +22,10 @@ public class GetGoodsList {
     @RequestMapping(value = "/query")
     public ResultRecode<PageHelperUtil> getGoodsByCatIdOrName(@RequestParam(name = "query",defaultValue = "") String query,
                                               @RequestParam(name = "id",defaultValue = "0") int catId,
+                                              @RequestParam(name = "orders",defaultValue = "0") int orders,
                                               @RequestParam(name = "pagenum",defaultValue = "1") Integer pagenum,
                                               @RequestParam(name = "pagesize",defaultValue = "8") Integer pagesize){
-        PageHelperUtil<GoodsList> goodsByPage = getGoodsLists.getGoodsByPage(query, catId, pagenum, pagesize);
+        PageHelperUtil<GoodsList> goodsByPage = getGoodsLists.getGoodsByPage(query, catId,orders, pagenum, pagesize);
         ResultRecode<PageHelperUtil> goodsListResultRecode = new ResultRecode<>();
         ReStuts reStuts = reStutsUtil.getReStuts(goodsByPage.getList().size());
         goodsListResultRecode.setDatas(goodsByPage);

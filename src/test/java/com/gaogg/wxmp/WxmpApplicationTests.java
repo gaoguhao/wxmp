@@ -30,7 +30,7 @@ class WxmpApplicationTests {
 
     @Test
     public void testgoods(){
-        final PageHelperUtil<GoodsList> goodsByPages = getGoodsLists.getGoodsByPage("游戏", 0, 1, 10);
+        final PageHelperUtil<GoodsList> goodsByPages = getGoodsLists.getGoodsByPage("", 5, 1,1, 10);
         System.out.println(goodsByPages);
     }
 }

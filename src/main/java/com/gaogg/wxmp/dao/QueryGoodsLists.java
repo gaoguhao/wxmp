@@ -14,5 +14,5 @@ public interface QueryGoodsLists {
     List<GoodsList> queryAll();
     //通过mapper.class方式来生成sql文件typ表示类方法，method标识调用的哪个执行方法
     @SelectProvider(type= GoodsByQuerySqlMapper.class,method = "selectByQuery")
-    List<GoodsList> queryGoodsByCatId(String query,int catId);
+    List<GoodsList> queryGoodsByCatId(String query,int catId,int orders);
 }
