@@ -57,13 +57,15 @@ class WxmpApplicationTests {
         // 声明 http get 请求
         final List<Long> goodsLists = queryGoodsLists.queryGoodsId();
         //System.out.println(goodsLists);
-        String url="https://api-hmugo-web.itheima.net/api/public/v1/goods/detail?goods_id=";
+        String url="";
         for (Long goodsList : goodsLists) {
+            url="https://api-hmugo-web.itheima.net/api/public/v1/goods/detail?goods_id=";
             url=url+goodsList;
             //System.out.println(url);
             insertDatas(url);
-            Thread.sleep(10000);
+            //Thread.sleep(3000);
         }
+       // insertDatas(url);
         //String url="https://api-hmugo-web.itheima.net/api/public/v1/goods/detail?goods_id=43986";
 
     }
@@ -84,14 +86,46 @@ class WxmpApplicationTests {
                 result = EntityUtils.toString(response.getEntity(), "UTF-8");
                 final JSONObject parse = (JSONObject) new JSONParser().parse(result);
                 final JSONObject jsonObject = (JSONObject) parse.get("message");
-                //System.out.println(jsonObject.get("goods_name"));
-                insertData.insertIntoGoodsDetailOne((Long)jsonObject.get("goods_id"),(Long)jsonObject.get("cat_id"),(String)jsonObject.get("goods_name"),(Long)jsonObject.get("goods_price"),(Long)jsonObject.get("goods_number"),(Long)jsonObject.get("goods_weight"),(String)jsonObject.get("goods_introduce"),(String)jsonObject.get("goods_big_logo"),(String)jsonObject.get("goods_small_logo"),(Long)jsonObject.get("goods_state"),(Long)jsonObject.get("is_del"),(String)jsonObject.get("add_time"),(String)jsonObject.get("upd_time"),(String)jsonObject.get("delete_time"),(Long)jsonObject.get("hot_mumber"),(String)jsonObject.get("is_promote"),(Long)jsonObject.get("cat_one_id"),(Long)jsonObject.get("cat_two_id"),(Long)jsonObject.get("cat_three_id"),(String)jsonObject.get("goods_cat"));
+//                isNulls(jsonObject,"delete_time");
+//                System.out.println(jsonObject.get("goods_introduce").toString().toCharArray().length);
+ //               System.out.println(jsonObject.get("goods_introduce").getClass().toString());
+//                System.out.println(jsonObject.get("goods_cat").getClass().toString());
+
+                insertData.insertIntoGoodsDetailOne(
+                        (Long)jsonObject.get("goods_id"),
+                        (Long)jsonObject.get("cat_id"),
+                        (String)jsonObject.get("goods_name"),
+                        (Long)jsonObject.get("goods_price"),
+                        (Long)jsonObject.get("goods_number"),
+                        (Long)jsonObject.get("goods_weight"),
+                        (String)jsonObject.get("goods_introduce"),
+                        (String)jsonObject.get("goods_big_logo"),
+                        (String)jsonObject.get("goods_small_logo"),
+                        (Long)jsonObject.get("goods_state"),
+                        (String)jsonObject.get("is_del"),
+                        (Long)jsonObject.get("add_time"),
+                        (Long)jsonObject.get("upd_time"),
+                        (String)jsonObject.get("delete_time"),
+                        (Long)jsonObject.get("hot_mumber"),
+                        (Boolean)jsonObject.get("is_promote"),
+                        (Long)jsonObject.get("cat_one_id"),
+                        (Long)jsonObject.get("cat_two_id"),
+                        (Long)jsonObject.get("cat_three_id"),
+                        (String)jsonObject.get("goods_cat"));
                 final JSONArray pics = (JSONArray) jsonObject.get("pics");
                 System.out.println(pics.size());
                 for(int i=0;i<pics.size();i++){
                     JSONObject pic = (JSONObject)  pics.get(i);
-                    System.out.println(pic.get("pics_mid"));
-                    insertData.insertGoodsPic((Long)pic.get("pics_id"),(Long)pic.get("goods_id"),(String)pic.get("pics_big"),(String)pic.get("pics_mid"),(String)pic.get("pics_sma"),(String)pic.get("pics_big_url"),(String)pic.get("pics_mid_url"),(String)pic.get("pics_sma_url"));
+                    //System.out.println(pic.get("pics_mid"));
+                    insertData.insertGoodsPic(
+                            (Long)pic.get("pics_id"),
+                            (Long)pic.get("goods_id"),
+                            (String)pic.get("pics_big"),
+                            (String)pic.get("pics_mid"),
+                            (String)pic.get("pics_sma"),
+                            (String)pic.get("pics_big_url"),
+                            (String)pic.get("pics_mid_url"),
+                            (String)pic.get("pics_sma_url"));
                 }
 
                 final JSONArray attrs = (JSONArray) jsonObject.get("attrs");
@@ -99,13 +133,22 @@ class WxmpApplicationTests {
                 for(int j=0;j<attrs.size();j++){
                     JSONObject attr = (JSONObject) attrs.get(j);
                     //System.out.println(pic.get("pics_mid"));
-                    insertData.insertGoodsPic((Long)attr.get("goods_id"),(Long)attr.get("attr_id"),(String)attr.get("attr_value"),(String)attr.get("add_price"),(String)attr.get("attr_name"),(String)attr.get("attr_sel"),(String)attr.get("attr_write"),(String)attr.get("attr_vals"));
+                    insertData.insertGoodsDetailAttrs(
+                            (Long)attr.get("goods_id"),
+                            (Long)attr.get("attr_id"),
+                            (String)attr.get("attr_value"),
+                            (Long)attr.get("add_price"),
+                            (String)attr.get("attr_name"),
+                            (String)attr.get("attr_sel"),
+                            (String)attr.get("attr_write"),
+                            (String)attr.get("attr_vals"));
                 }
             }
-            //Thread.sleep(10000);
+            //Thread.sleep(000);
             //System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }
